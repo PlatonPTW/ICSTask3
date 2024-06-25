@@ -1,13 +1,13 @@
-CREATE FUNCTION dbo.udf_GetSKUPrice (@ID_SKU INT)
-RETURNS DECIMAL(18, 2)
-AS
-BEGIN
-    DECLARE @Price DECIMAL(18, 2);
+create function dbo.udf_GetSKUPrice (@ID_SKU INT)
+returns DECIMAL(18, 2)
+as
+begin
+    declare @Price DECIMAL(18, 2);
 
-    SELECT @Price = SUM(Value) / SUM(Quantity)
-    FROM dbo.Basket
-    WHERE ID_SKU = @ID_SKU;
+    select @Price = SUM(Value) / SUM(Quantity)
+    from dbo.Basket
+    where ID_SKU = @ID_SKU;
 
-    RETURN ISNULL(@Price, 0);
-END;
+    returns ISNULL(@Price, 0);
+end;
 GO
