@@ -1,9 +1,9 @@
-CREATE VIEW dbo.vw_SKUPrice
-AS
-SELECT
+create view dbo.vw_SKUPrice
+as
+select
     s.ID,
     s.Code,
     s.Name,
-    dbo.udf_GetSKUPrice(s.ID) AS Price
-FROM dbo.SKU AS s;
-GO
+    dbo.udf_GetSKUPrice(s.ID) as Price
+from dbo.SKU as s;
+go
