@@ -1,15 +1,15 @@
-CREATE PROCEDURE dbo.usp_MakeFamilyPurchase (@FamilySurName VARCHAR(255))
-AS
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM dbo.Family WHERE SurName = @FamilySurName)
-    BEGIN
-        RAISERROR('Семья с фамилией "%s" не найдена.', 16, 1, @FamilySurName);
-        RETURN;
-    END;
+create procedure dbo.usp_MakeFamilyPurchase (@FamilySurName varchar(255))
+as
+begin
+    if not exists (select 1 from dbo.Family where SurName = @FamilySurName)
+    begin
+        raiserror('Семья с фамилией "%s" не найдена.', 16, 1, @FamilySurName);
+        return;
+    end;
 
-    UPDATE dbo.Family
-    SET BudgetValue = BudgetValue - (SELECT ISNULL(SUM(Value), 0) FROM dbo.Basket WHERE ID_Family = f.ID)
-    FROM dbo.Family AS f
-    WHERE f.SurName = @FamilySurName;
-END;
-GO
+    update dbo.Family
+    set BudgetValue = BudgetValue - (select isnull(sum(Value), 0) from dbo.Basket where ID_Family = f.ID)
+    from dbo.Family as f
+    where f.SurName = @FamilySurName;
+end;
+go
