@@ -1,4 +1,4 @@
-create function dbo.udf_GetSKUPrice (@ID_SKU INT)
+create function dbo.udf_GetSKUPrice (@ID_SKU int)
 returns decimal(18, 2)
 as
 begin
